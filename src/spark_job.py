@@ -32,6 +32,20 @@ def aggregate_revenue(orders_df, customers_df):
         .orderBy(col("total_revenue").desc())
 
 
+def validate_schema(df, required_columns):
+    missing_columns = [
+        column for column in required_columns
+        if column not in df.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            f"Missing required columns: {missing_columns}"
+        )
+
+    return df
+
+
 def main():
     spark = SparkSession.builder \
         .appName("Customer Revenue Pipeline") \
@@ -47,6 +61,16 @@ def main():
         "data/orders.csv",
         header=True,
         inferSchema=True
+    )
+
+    customers = validate_schema(
+    customers,
+    ["customer_id", "name", "age", "country"]
+)
+
+    orders = validate_schema(
+        orders,
+        ["order_id", "customer_id", "status", "quantity", "price"]
     )
 
     customers = clean_customers(customers)
