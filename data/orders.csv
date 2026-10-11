@@ -1,0 +1,10 @@
+order_id,customer_id,status,quantity,price
+101,1,Completed,3,100
+102,1,Completed,1,200
+103,2,Completed,5,50
+104,3,Completed,2,150
+105,4,Pending,4,80
+106,4,Completed,3,120
+107,5,Completed,2,60
+108,6,Completed,5,90
+109,3,Completed,1,300
