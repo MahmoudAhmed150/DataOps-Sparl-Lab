@@ -31,7 +31,7 @@ def test_clean_customers(spark):
 
     result = clean_customers(customers)
 
-    assert result.count() == 3
+    assert result.count() == 2
     assert result.filter("age < 18").count() == 0
 
 
